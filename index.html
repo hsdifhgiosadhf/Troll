@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video tổng kết năm 2026</title>
+
+  <!-- Preview khi gửi link qua Messenger / Zalo / Teams -->
+  <meta name="description" content="Nhìn lại một năm làm việc cùng nhau. Bấm để xem video." />
+  <meta property="og:title" content="Video tổng kết năm 2026" />
+  <meta property="og:description" content="Nhìn lại một năm làm việc cùng nhau. Bấm để xem video." />
+  <meta property="og:type" content="video.other" />
+  <meta name="theme-color" content="#f4f5f7" />
+
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --text: #1d2330;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ---------- Trang mồi ---------- */
+    #bait {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, .08);
+    }
+
+    .thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #38bdf8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #fff;
+      text-align: center;
+      user-select: none;
+    }
+    .thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.18) 0 12%, transparent 13%),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.12) 0 18%, transparent 19%);
+    }
+
+    .year {
+      position: relative;
+      font-size: clamp(36px, 9vw, 72px);
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      position: relative;
+      font-size: clamp(13px, 2.4vw, 17px);
+      opacity: .9;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .play {
+      position: relative;
+      margin-top: 14px;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .95);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+      transition: transform .15s ease;
+    }
+    .play::after {
+      content: "";
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent var(--accent);
+      margin-left: 5px;
+    }
+    .thumb:hover .play { transform: scale(1.08); }
+
+    .duration {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, .55);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 7px;
+      border-radius: 4px;
+    }
+
+    .info { padding: 18px 20px 20px; }
+    .info h1 { font-size: 18px; font-weight: 600; }
+    .info p { margin-top: 6px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .hint {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hint::before { content: "🔊"; }
+
+    /* ---------- Video ---------- */
+    #stage {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: #000;
+      z-index: 10;
+    }
+    #stage video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #note {
+      position: fixed;
+      left: 50%;
+      bottom: 5vh;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      z-index: 20;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .55);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: clamp(14px, 2.6vw, 20px);
+      font-weight: 600;
+      white-space: nowrap;
+      transition: opacity .6s ease, transform .6s ease;
+      pointer-events: none;
+    }
+    #note.show { opacity: 1; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+
+  <!-- Trang mồi -->
+  <div id="bait">
+    <div class="card">
+      <div class="thumb" id="playBtn" role="button" tabindex="0" aria-label="Phát video">
+        <div class="year">2026</div>
+        <div class="subtitle">Nhìn lại một năm</div>
+        <div class="play"></div>
+        <span class="duration">3:33</span>
+      </div>
+      <div class="info">
+        <h1>Video tổng kết năm 2026</h1>
+        <p>Cảm ơn mọi người vì một năm đồng hành. Dành 3 phút xem lại những khoảnh khắc đáng nhớ nhé!</p>
+        <div class="hint">Nên bật âm thanh để có trải nghiệm tốt nhất</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div id="stage">
+    <video id="video" playsinline loop preload="metadata">
+      <source src="Rick-Astley-Never-Gonna-Give-You-Up-Official-Video-4K-.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div id="note">🎶 Never gonna give you up… Bạn vừa bị rickroll 😄</div>
+
+  <script>
+    const bait = document.getElementById("bait");
+    const playBtn = document.getElementById("playBtn");
+    const stage = document.getElementById("stage");
+    const video = document.getElementById("video");
+    const note = document.getElementById("note");
+
+    let started = false;
+
+    function goFullscreen() {
+      const el = document.documentElement;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen;
+      if (!req) return; // iPhone không hỗ trợ fullscreen cho trang web
+      try {
+        const p = req.call(el);
+        if (p && p.catch) p.catch(() => {});
+      } catch (e) {}
+    }
+
+    function start() {
+      if (started) return;
+      started = true;
+
+      goFullscreen();
+      bait.style.display = "none";
+      stage.style.display = "block";
+
+      // play() nằm trong sự kiện click nên trình duyệt cho phát có tiếng
+      video.play().catch(() => {
+        // Trình duyệt chặn tiếng: phát tắt tiếng, chạm lần nữa để bật tiếng
+        video.muted = true;
+        video.play();
+        stage.addEventListener("click", () => { video.muted = false; }, { once: true });
+      });
+
+      setTimeout(() => note.classList.add("show"), 5000);
+      setTimeout(() => note.classList.remove("show"), 12000);
+    }
+
+    playBtn.addEventListener("click", start);
+    playBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); start(); }
+    });
+
+    // Bấm vào video để vào lại fullscreen nếu lỡ thoát
+    stage.addEventListener("dblclick", goFullscreen);
+  </script>
+</body>
+</html>
