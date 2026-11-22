@@ -1,0 +1,8 @@
+# Công cụ tìm kiếm bỏ qua các thư mục này để không đọc nhầm bản sao lưu cũ hoặc bản dựng thành mã hiện tại.
+.saoluu/
+node_modules/
+dist/
+out/
+coverage/
+playwright-report/
+test-results/

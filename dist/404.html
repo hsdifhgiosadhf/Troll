@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đang quay lại trang chủ — Thành Hoàng</title>
+    <script>
+      (function () {
+        var duongDan = window.location.pathname;
+        var doan = duongDan.split("/").filter(Boolean);
+        var goc = doan.length > 1 ? "/" + doan[0] + "/" : "/";
+        window.location.replace(goc + (window.location.hash || "#gioi-thieu"));
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Đang chuyển về trang hồ sơ của Thành Hoàng…</p>
+  </body>
+</html>

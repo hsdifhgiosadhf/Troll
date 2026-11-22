@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+:root {
+  /* Bảng màu Parisian Synth-Pop theo tinh thần Vendredi sur Mer - Écoute chérie */
+  --mau-nen-chinh: #FAF3EC;
+  --mau-nen-phu: #F3E5D8;
+  --mau-nen-san-khau: #121829;
+  --mau-nen-san-khau-sau: #0B0F1C;
+  --mau-chu-chinh: #16192B;
+  --mau-chu-phu: #5C4D52;
+  --mau-chu-tren-toi: #FAF3EC;
+  --mau-nhan-chinh: #A4243B;
+  --mau-nhan-chinh-dam: #7D192B;
+  --mau-nhan-phu: #E09F5A;
+  --mau-hong-dao: #F2B8A2;
+  --mau-vien: #DECBB8;
+  --mau-thanh-cong: #2B6A4A;
+  --mau-loi: #A4243B;
+
+  /* Kiểu chữ đồng bộ (hỗ trợ đầy đủ tiếng Việt) */
+  --font-tieu-de: "Cormorant Garamond", Georgia, serif;
+  --font-chinh: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+
+  /* Bo góc & Khoảng cách chuẩn */
+  --bo-goc-nho: 8px;
+  --bo-goc-the: 20px;
+  --bo-goc-vom: 999px;
+  --khoang-cach-muc: 5rem;
+
+  /* Thời lượng & Đường cong chuyển động */
+  --thoigian-nhanh: 180ms;
+  --thoigian-chuyen: 320ms;
+  --thoigian-morph: 480ms;
+  --duong-cong-chuyen: cubic-bezier(0.2, 0, 0, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--mau-nen-san-khau-sau);
+  color: var(--mau-chu-tren-toi);
+  font-family: var(--font-chinh);
+}
+
+body {
+  margin: 0;
+  background-color: var(--mau-nen-san-khau-sau);
+  color: var(--mau-chu-tren-toi);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.chu-tieu-de {
+  font-family: var(--font-tieu-de);
+}
+
+.nen-san-khau-parisian {
+  background-color: var(--mau-nen-san-khau);
+  background-image:
+    radial-gradient(circle at 16% 18%, rgba(164, 36, 59, 0.34) 0%, rgba(18, 24, 41, 0) 48%),
+    radial-gradient(circle at 84% 26%, rgba(224, 159, 90, 0.22) 0%, rgba(18, 24, 41, 0) 46%),
+    radial-gradient(circle at 52% 88%, rgba(242, 184, 162, 0.14) 0%, rgba(18, 24, 41, 0) 52%);
+}
+
+.nen-kem-parisian {
+  background-color: var(--mau-nen-chinh);
+  background-image:
+    radial-gradient(circle at 90% 10%, rgba(242, 184, 162, 0.24) 0%, rgba(250, 243, 236, 0) 42%),
+    radial-gradient(circle at 8% 85%, rgba(224, 159, 90, 0.12) 0%, rgba(250, 243, 236, 0) 40%);
+}
+
+.bong-do-parisian {
+  box-shadow: 0 18px 42px -18px rgba(18, 24, 41, 0.16);
+}
+
+.bong-do-san-khau {
+  box-shadow: 0 24px 54px -18px rgba(11, 15, 28, 0.65);
+}
+
+.nut-nhan {
+  transition:
+    transform var(--thoigian-nhanh) var(--duong-cong-chuyen),
+    background-color var(--thoigian-nhanh) var(--duong-cong-chuyen),
+    border-color var(--thoigian-nhanh) var(--duong-cong-chuyen),
+    color var(--thoigian-nhanh) var(--duong-cong-chuyen);
+}
+
+.nut-nhan:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.chuyen-morph {
+  transition:
+    all var(--thoigian-morph) var(--duong-cong-chuyen),
+    transform var(--thoigian-chuyen) var(--duong-cong-chuyen),
+    opacity var(--thoigian-chuyen) var(--duong-cong-chuyen);
+}
+
+.chuyen-nhanh {
+  transition:
+    transform var(--thoigian-chuyen) var(--duong-cong-chuyen),
+    opacity var(--thoigian-chuyen) var(--duong-cong-chuyen),
+    border-color var(--thoigian-nhanh) var(--duong-cong-chuyen),
+    background-color var(--thoigian-nhanh) var(--duong-cong-chuyen);
+}
+
+@keyframes quay-dia-than {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes nhip-song-nhac {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.dia-than-dang-quay {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: quay-dia-than 16s linear infinite;
+  will-change: transform;
+}
+
+.vong-nhip-bass {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 + var(--nhip-bass, 0.12) * 0.22));
+  transition: transform 90ms linear;
+  will-change: transform;
+}
+
+.mat-troi-nhip-bass {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 + var(--nhip-bass, 0.12) * 0.42));
+  transition: transform 90ms linear;
+  will-change: transform;
+}
+
+.cot-pho-nhac {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 80ms linear;
+  will-change: transform;
+}
+
+.cot-song-nhac {
+  transform-origin: bottom;
+  animation: nhip-song-nhac 1.1s ease-in-out infinite;
+}
+
+.cot-song-nhac-2 {
+  transform-origin: bottom;
+  animation: nhip-song-nhac 0.85s ease-in-out 0.2s infinite;
+}
+
+.cot-song-nhac-3 {
+  transform-origin: bottom;
+  animation: nhip-song-nhac 1.25s ease-in-out 0.35s infinite;
+}
+
+.cot-song-nhac-4 {
+  transform-origin: bottom;
+  animation: nhip-song-nhac 0.95s ease-in-out 0.15s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .nut-nhan,
+  .chuyen-morph,
+  .chuyen-nhanh,
+  .vong-nhip-bass,
+  .mat-troi-nhip-bass,
+  .cot-pho-nhac {
+    transition-duration: 0.01ms !important;
+  }
+
+  .vong-nhip-bass,
+  .mat-troi-nhip-bass,
+  .cot-pho-nhac {
+    transform: none !important;
+  }
+
+  .cot-song-nhac,
+  .cot-song-nhac-2,
+  .cot-song-nhac-3,
+  .cot-song-nhac-4 {
+    animation: none !important;
+  }
+}
